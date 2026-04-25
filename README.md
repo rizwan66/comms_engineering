@@ -149,20 +149,55 @@ All figures are in `assets/plots/`. Key ones:
 
 ---
 
-## 📚 Learning Path
+## 📚 Documentation
 
-1. `docs/01_signals_and_systems.md` — transforms, sampling, convolution
+### Architecture & Block Diagrams
+
+| Doc | Description |
+|-----|-------------|
+| [System Architecture](docs/system_architecture.md) | Module dependency map, end-to-end data flow, OFDM/MIMO/LTE block diagrams |
+| [Block Diagrams & Circuit Diagrams](docs/block_diagrams.md) | IQ modulator, AM/FM/SSB, RRC chain, OFDM transceiver, MIMO, PLL, Costas, Kalman, LDPC, convolutional encoder, OTFS |
+
+### Theory & Concepts (Fundamentals)
+
+| Doc | Description |
+|-----|-------------|
+| [01 — Signals & Systems](docs/01_signals_and_systems.md) | Signal classification, LTI, convolution, Fourier/Z/Laplace transforms |
+| [02 — Filters](docs/02_filters.md) | IIR/FIR design, Butterworth/Chebyshev/Elliptic, LMS/RLS |
+| [03 — Modulation](docs/03_modulation.md) | AM/FM theory, PSK/QAM constellations, modulation index |
+| [04 — Noise Cancellation](docs/04_noise_cancellation.md) | Wiener filter, spectral subtraction, ANC algorithms |
+| [05 — Transceivers](docs/05_transceivers.md) | Pulse shaping, eye diagrams, link budget |
+| [06 — Communication Engineering](docs/06_communication_engineering.md) | System design, SNR/BER analysis |
+
+### Theory & Concepts (Advanced)
+
+| Doc | Description |
+|-----|-------------|
+| [07 — OFDM & Channel Estimation](docs/07_ofdm_channel_estimation.md) | CP math, pilot grids, LS/MMSE estimation, PAPR, ZF/MMSE equalization |
+| [08 — MIMO Spatial Systems](docs/08_mimo_spatial.md) | SVD, ZF/MMSE equalizers, Alamouti STBC, capacity, water-filling |
+| [09 — FEC Codes](docs/09_fec_codes.md) | Hamming(7,4), convolutional codes, LDPC belief propagation, Viterbi, BER curves |
+| [10 — Synchronization](docs/10_synchronization.md) | PLL math, Costas loop, Mueller-Müller timing, CFO estimation |
+| [11 — Wavelets & Kalman](docs/11_wavelets_kalman.md) | CWT/DWT filter banks, denoising, Kalman predict-update, EKF, RTS smoother |
+| [12 — OTFS & 5G](docs/12_otfs_5g.md) | Delay-Doppler domain, ISFFT/SFFT, Heisenberg/Wigner, channel estimation, vs OFDM |
+| [13 — ML Modulation Classifier](docs/13_ml_modulation_classifier.md) | CNN architecture, IQ dataset generation, training, confusion matrix |
+| [14 — LTE Downlink](docs/14_lte_downlink.md) | PDSCH chain, resource blocks, EPA channel, CRC, rate matching, HARQ, soft LLR |
+
+---
+
+## 🗺️ Learning Path
+
+1. [Signals & Systems](docs/01_signals_and_systems.md) — transforms, sampling, convolution
 2. `src/signals/generator.py` — generate and visualise signals
-3. `docs/02_filters.md` + `src/filters/design.py` — filter design
-4. `docs/03_modulation.md` + `src/modulation/schemes.py` — AM/FM/QAM
-5. `src/ofdm/ofdm_system.py` — OFDM with pilots
-6. `src/fec/channel_coding.py` — error correction
-7. `src/mimo/mimo_system.py` — spatial multiplexing
-8. `src/wavelets/wavelet_transform.py` — time-frequency analysis
-9. `src/kalman/kalman_filter.py` — optimal estimation
-10. `src/lte_simulator/lte_downlink.py` — full LTE physical layer
-11. `src/otfs/otfs_system.py` — next-gen 6G modulation
-12. `src/ml_classifier/modulation_classifier.py` — AI for DSP
+3. [Filters](docs/02_filters.md) + `src/filters/design.py` — filter design
+4. [Modulation](docs/03_modulation.md) + `src/modulation/schemes.py` — AM/FM/QAM
+5. [OFDM & Channel Estimation](docs/07_ofdm_channel_estimation.md) + `src/ofdm/ofdm_system.py`
+6. [FEC Codes](docs/09_fec_codes.md) + `src/fec/channel_coding.py` — error correction
+7. [MIMO](docs/08_mimo_spatial.md) + `src/mimo/mimo_system.py` — spatial multiplexing
+8. [Synchronization](docs/10_synchronization.md) + `src/synchronisation/pll.py`
+9. [Wavelets & Kalman](docs/11_wavelets_kalman.md) — time-frequency & estimation
+10. [LTE Downlink](docs/14_lte_downlink.md) + `src/lte_simulator/lte_downlink.py`
+11. [OTFS](docs/12_otfs_5g.md) + `src/otfs/otfs_system.py` — next-gen modulation
+12. [ML Classifier](docs/13_ml_modulation_classifier.md) + `src/ml_classifier/` — AI for DSP
 
 ---
 
