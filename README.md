@@ -1,97 +1,61 @@
-# 📡 Digital Signal Processing — Complete Learning Project
+# 📡 Communications Engineering — DSP Learning Project
 
-> A comprehensive, hands-on DSP learning resource covering theory, simulations, and real-world communication engineering applications.
+> Comprehensive, hands-on DSP covering theory + Python simulations for signals, filters, modulation, noise cancellation, transceivers, OFDM, FEC, MIMO, and GNU Radio.
 
 ---
 
 ## 🗂️ Project Structure
 
 ```
-dsp/
-├── docs/                        # In-depth theory notes
-│   ├── 01_signals_and_systems.md
-│   ├── 02_filters.md
-│   ├── 03_modulation.md
-│   ├── 04_noise_cancellation.md
-│   ├── 05_transceivers.md
-│   └── 06_communication_engineering.md
-│
-├── src/                         # Python implementations
-│   ├── signals/                 # Signal generation & analysis
-│   ├── filters/                 # FIR, IIR, Butterworth, Chebyshev
-│   ├── modulation/              # AM, FM, PM, QAM, OFDM
-│   ├── noise_cancellation/      # LMS, RLS, Wiener, ANC
-│   └── transceivers/            # TX/RX chain implementations
-│
-├── notebooks/                   # Jupyter notebooks with visualizations
-├── simulations/                 # Full system simulations
-└── web/                         # Interactive HTML visualizer
+comms_engineering/
+├── src/
+│   ├── signals/generator.py           # Signal generation, FFT, STFT, convolution
+│   ├── filters/design.py              # FIR, IIR, Butterworth, LMS, RLS, Notch
+│   ├── modulation/schemes.py          # AM, FM, BPSK, QPSK, QAM, OFDM, BER
+│   ├── noise_cancellation/canceller.py # Spectral sub, Wiener, LMS/RLS ANC
+│   ├── transceivers/chain.py          # Full TX→Channel→RX chain, eye diagram
+│   ├── ofdm/ofdm_system.py            # ★ CP, IFFT/FFT, multipath, ZF equaliser
+│   ├── fec/channel_coding.py          # ★ LDPC+BP, Turbo, Viterbi, Shannon limit
+│   ├── synchronisation/pll.py         # ★ 2nd-order PLL, Costas, Mueller-Müller
+│   ├── mimo/mimo_system.py            # ★ ZF/MMSE equaliser, Alamouti, capacity
+│   └── gnu_radio/gr_blocks.py         # ★ GNU Radio blocks, RTL-SDR/USRP flowgraph
+├── simulations/full_chain_demo.py
+├── docs/                              # 6 theory markdown files
+└── assets/plots/                      # 35 pre-generated figures
 ```
-
----
-
-## 🧠 Topics Covered
-
-| Module | Topics |
-|--------|--------|
-| **Signals & Systems** | Continuous/discrete signals, Fourier, Laplace, Z-Transform, convolution, sampling |
-| **Filters** | FIR, IIR, Butterworth, Chebyshev, Elliptic, Notch, adaptive filters |
-| **Modulation** | AM, DSB-SC, FM, PM, FSK, PSK, QAM, OFDM, spread spectrum |
-| **Noise Cancellation** | LMS, RLS, Wiener filter, ANC, spectral subtraction |
-| **Transceivers** | RF front-end, ADC/DAC, baseband processing, demodulation |
-| **Communication Eng.** | Channel models, BER, SNR, Shannon capacity, link budgets |
 
 ---
 
 ## 🚀 Quick Start
 
 ```bash
-# Clone the repo
-git clone https://github.com/rizwan66/dsp.git
-cd dsp
+git clone https://github.com/rizwan66/comms_engineering.git
+cd comms_engineering && pip install -r requirements.txt
 
-# Install dependencies
-pip install -r requirements.txt
-
-# Run a simulation
-python simulations/full_chain_demo.py
-
-# Launch the interactive web visualizer
-open web/index.html
+python src/ofdm/ofdm_system.py        # OFDM + cyclic prefix + multipath
+python src/fec/channel_coding.py      # LDPC/Turbo vs Shannon limit
+python src/synchronisation/pll.py     # Costas PLL + M&M timing recovery
+python src/mimo/mimo_system.py        # MIMO ZF/MMSE/Alamouti + capacity
+python src/gnu_radio/gr_blocks.py     # GNU Radio simulation flowgraph
+python simulations/full_chain_demo.py # Full system master demo
 ```
 
 ---
 
-## 📦 Requirements
+## 📊 Key Formulas
 
-```
-numpy
-scipy
-matplotlib
-jupyter
-sounddevice  # for real-time audio DSP
-```
-
-Install all:
-```bash
-pip install -r requirements.txt
-```
-
----
-
-## 📚 Learning Path
-
-1. Start with `docs/01_signals_and_systems.md` — build mathematical foundations
-2. Explore `src/signals/` — generate and visualize signals in Python
-3. Move to `docs/02_filters.md` then `src/filters/` — design digital filters
-4. Study `docs/03_modulation.md` + `src/modulation/` — implement AM/FM/QAM
-5. Read `docs/04_noise_cancellation.md` — understand adaptive algorithms
-6. Connect everything in `simulations/full_chain_demo.py`
-7. Use the interactive `web/index.html` to experiment visually
+| Concept | Formula |
+|---------|---------|
+| Shannon capacity | C = B·log₂(1 + SNR) |
+| OFDM (no ISI) | CP length ≥ max multipath delay |
+| MIMO capacity | C = log₂ det(I + ρ/Nₜ·HHᴴ) |
+| ZF equaliser | W = (HᴴH)⁻¹Hᴴ |
+| MMSE equaliser | W = (HᴴH + σ²I)⁻¹Hᴴ |
+| Costas error | e[n] = sign(I)·Q |
+| M&M timing | e[n] = d̂[n-1]·x[n] − d̂[n]·x[n-1] |
+| BPSK BER | Q(√(2Eb/N₀)) |
 
 ---
 
 ## 👤 Author
-
-**Rizwan** — Cloud & DSP Engineering Student  
-GitHub: [@rizwan66](https://github.com/rizwan66)
+**Rizwan** · [@rizwan66](https://github.com/rizwan66)
