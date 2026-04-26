@@ -317,8 +317,8 @@ if __name__ == '__main__':
         ch  = CDLChannel(name, cfg)
         h   = ch.get_cir()
         t_ns = np.arange(len(h)) / cfg.fs * 1e9
-        ax1.stem(t_ns, np.abs(h), linefmt=col+'-', markerfmt=col+'o',
-                 basefmt='gray-', label=name)
+        ax1.vlines(t_ns, 0, np.abs(h), colors=col, lw=1.5, label=name)
+        ax1.scatter(t_ns, np.abs(h), color=col, s=20, zorder=5)
     ax1.set_xlabel("Delay (ns)", color='#8b949e')
     ax1.set_ylabel("|h(τ)|", color='#8b949e')
     ax1.set_title("CDL Channel Impulse Responses", color=BLUE, fontweight='bold')
@@ -404,7 +404,8 @@ if __name__ == '__main__':
         prof  = CDL_PROFILES[name]
         delays = np.array(prof['delays_ns'])
         powers = np.array(prof['powers_db'])
-        ax7.stem(delays, powers, linefmt=col+'-', markerfmt=col+'o', basefmt='gray-', label=name)
+        markerline, stemlines, baseline = ax7.stem(delays, powers, basefmt='C7-', label=name)
+        plt.setp(stemlines, color=col); plt.setp(markerline, color=col)
     ax7.set_xlabel("Delay (ns)", color='#8b949e')
     ax7.set_ylabel("Power (dBr)", color='#8b949e')
     ax7.set_title("CDL Delay Profiles A/B/C\n(NLOS environments)", color=BLUE, fontweight='bold')
